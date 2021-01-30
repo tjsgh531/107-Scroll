@@ -10,8 +10,8 @@ export class PictureRotate{
         this.radius = 300;
 
         this.imageNum = 0;
+        this.preImageNum = 0;
         this.wheelValue = 0;
-        this.currentWheelValue = 0;
         
         this.init();
         window.addEventListener('wheel',this.wheelEvent.bind(this));
@@ -27,44 +27,41 @@ export class PictureRotate{
     }
 
     wheelEvent(data){
-        this.currentWheelValue  -= data.wheelDelta;
-        if(this.currentWheelValue < 0){
-            this.currentWheelValue = 0;
+        this.wheelValue  -= data.wheelDelta;
+        if(this.wheelValue < 0){
+            this.wheelValue = 0;
         }
-        console.log(this.currentWheelValue);
-        
+        console.log(this.wheelValue);
+    
+        this.imageNum = Math.floor(this.wheelValue / 840);
+        console.log(`imageNum = ${this.imageNum}`);
+        if(this.preImageNum < this.imageNum){
+            this.switchRegular();
+        }
+        else if(this.preImageNum > this.imageNum){
+            this.switchReverse();
+        }
 
-        if(this.currentWheelValue % 840 === 0){
-            if(this.currentWheelValue > this.wheelValue){
-                this.switchRegular();
-            }
-            else if(this.currentWheelValue < this.wheelValue){
-                this.switchReverse();
-            }
-        }
     }
 
     switchRegular(){
-        this.imageNum--;
-        console.log(`imageNum : ${this.imageNum}`);
         let deg;
         for(let i = 0 ;  i < this.imageSection.length; i++){
-            deg = (45 * (i+this.imageNum)/180)*Math.PI;
+            deg = (45 * (i-this.imageNum)/180)*Math.PI;
             this.imageSection[i].style.left =`${this.centerPos.centerX + Math.cos(deg) * this.radius}px`;
             this.imageSection[i].style.top =`${this.centerPos.centerY + Math.sin(deg) * this.radius}px`;
         }
-        this.wheelEvent = this.currentWheelValue;
+        this.preImageNum = this.imageNum;
     }
 
     switchReverse(){
-        this.imageNum++;
         let deg;
         for(let i = 0 ;  i < this.imageSection.length; i++){
-            deg = (45 * (i+this.imageNum)/180)*Math.PI;
+            deg = (45 * (i-this.imageNum)/180)*Math.PI;
             this.imageSection[i].style.left =`${this.centerPos.centerX + Math.cos(deg) * this.radius}px`;
             this.imageSection[i].style.top =`${this.centerPos.centerY + Math.sin(deg) * this.radius}px`;
         }
-        this.wheelEvent = this.currentWheelValue;
+        this.preImageNum = this.imageNum;
     }
 
 }
