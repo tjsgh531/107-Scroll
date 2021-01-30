@@ -10,3 +10,11 @@ html,body{
 body{
     overflow: hidden;
 }
+div{
+    width :100px;
+    height: 100px;
+    margin: 30px;
+    border: 1px solid black;
+
+    position: absolute;
+}
