@@ -23,11 +23,12 @@ export class PictureRotate{
         this.maxWheelSpeed = 1000;
         this.wheelDirection;
         this.wheelReverseDir = false;
-        
+        this.transitionSpeed = 0.8;
+
         this.init();
         window.addEventListener('wheel',this.wheelEvent.bind(this));
 
-        this.pictureCange = new PictureChange(this.imageNum);  
+        this.pictureChange = new PictureChange(this.imageNum,this.transitionSpeed);  
     }
     
     init(){
@@ -62,7 +63,7 @@ export class PictureRotate{
             this.imageNum = Math.floor(this.wheelValue / 840);
 
             if(this.preImageNum !== this.imageNum){
-                this.pictureCange.getImageNum(this.imageNum);
+                this.pictureChange.getImageNum(this.imageNum);
 
                 if(this.preImageNum < this.imageNum){
                     this.switchRegular();
@@ -148,17 +149,20 @@ export class PictureRotate{
     }
 
     UpdateTransitionSpeed(){
-        let transitionSpeed;
 
         if(this.wheelSpeed < 250){
-            transitionSpeed = 0.8;
+            this.transitionSpeed = 0.8;
         }
         else{
-            transitionSpeed =  200/ this.wheelSpeed;
+            this.transitionSpeed =  200/ this.wheelSpeed;
         }
 
         for(let i = 0 ; i < this.imageSection.length; i++){ 
-            this.imageSection[i].style.transition = `all ${transitionSpeed}s linear 0s`;
+            this.imageSection[i].style.transition = `all ${this.transitionSpeed}s linear 0s`;
+        }
+
+        for(let i = 0 ; i < this.pictureChange.images.length; i++){
+            this.pictureChange.images[i].style.transition = `all ${this.transitionSpeed}s linear 0s`;
         }
     }
 }

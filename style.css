@@ -14,7 +14,6 @@ body{
 div{
     width :800px;
     height: 600px;
-    border: 1px solid black;
 
     position: absolute;
 
@@ -27,4 +26,6 @@ div{
 img{
     max-width: 800px;
     max-height: 600px;
+    opacity: 0.3;
+ 
 }

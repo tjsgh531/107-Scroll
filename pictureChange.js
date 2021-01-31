@@ -20,6 +20,7 @@ export class PictureChange{
         for(let i = 0 ; i< 6; i++){
             this.images[i].src =`./image/${i}.jpg`;
         }
+        this.chagePictureSize(0);
     }
 
     getImageNum(imgNum){
@@ -51,6 +52,24 @@ export class PictureChange{
         }
         else{
             this.images[preChildNum].src = '';
+        }
+        this.chagePictureSize(centerChildNum);
+    }
+
+    chagePictureSize(centerChildNum){
+        for(let i = 0 ; i< this.imageSection.length; i++){
+            if(i == centerChildNum){
+                this.images[i].style.opacity = '1';
+                this.images[i].style.width = '800px';
+                this.images[i].style.height = '600px';
+                this.imageSection[i].style.justifyContent = 'center';
+            }
+            else{
+                this.images[i].style.width = '400px';
+                this.images[i].style.height = '300px';
+                this.images[i].style.opacity = '0.3';
+                this.imageSection[i].style.justifyContent = 'left';
+            }
         }
     }
 }
