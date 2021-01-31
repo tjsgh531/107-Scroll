@@ -2,6 +2,11 @@ import{
     PictureRotate
 }from './pictureRotate.js';
 
+class Main{
+    constructor(){
+       new PictureRotate();
+    }
+}
 window.onload = () => {
-    new PictureRotate();
+    new Main();
 };

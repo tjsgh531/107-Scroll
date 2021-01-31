@@ -19,4 +19,8 @@ div{
     position: absolute;
 
     transition: all 1s linear 0s;
+
+    background-image: url('./image/0.jpg');
+    background-position: center;
+    background-size: contain;
 }

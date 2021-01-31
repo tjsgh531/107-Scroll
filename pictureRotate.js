@@ -1,7 +1,9 @@
-/* 휠 스피드 부분을 보강 해야합니다. */
+import{
+    PictureChange
+}from './pictureChange.js';
 
 export class PictureRotate{
-    constructor(){        
+    constructor(){       
         this.imageSection = document.querySelectorAll('.imageSection');
         this.centerPos = {
             centerX : -300,
@@ -24,6 +26,8 @@ export class PictureRotate{
         
         this.init();
         window.addEventListener('wheel',this.wheelEvent.bind(this));
+
+        this.pictureCange = new PictureChange(this.imageNum);  
     }
     
     init(){
@@ -57,12 +61,16 @@ export class PictureRotate{
 
             this.imageNum = Math.floor(this.wheelValue / 840);
 
-            if(this.preImageNum < this.imageNum){
-                this.switchRegular();
-            }
-            
-            else if(this.preImageNum > this.imageNum){
-                this.switchReverse();
+            if(this.preImageNum !== this.imageNum){
+                this.pictureCange.getImageNum(this.imageNum);
+
+                if(this.preImageNum < this.imageNum){
+                    this.switchRegular();
+                }
+                
+                else if(this.preImageNum > this.imageNum){
+                    this.switchReverse();
+                }
             }
         }
     }
@@ -108,7 +116,6 @@ export class PictureRotate{
     }
 
     wheelSpeedControl(){
-        console.log(`wheelEventEnd : ${this.wheelEventEnd}`);
         const speedControlInterval = setInterval(()=> {
             if(this.wheelReverseDir){
                 this.wheelSpeed = 0;
@@ -137,8 +144,6 @@ export class PictureRotate{
                 this.UpdateTransitionSpeed();
 
             }
-
-            console.log(`wheelSpeed : ${this.wheelSpeed}`);
         },30)
     }
 
