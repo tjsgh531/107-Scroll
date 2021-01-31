@@ -16,14 +16,16 @@ export class PictureRotate{
         this.wheelEventEnd = true;
         this.isChecking = false;
         this.wheelSpeed = 0;
+        this.maxWheelSpeed = 1800;
         this.isSpeedControl = false;
         
         this.init();
         window.addEventListener('wheel',this.wheelEvent.bind(this));
 
-        setInterval(()=> {
+        /*setInterval(()=> {
             console.log(`wheelSpeed : ${this.wheelSpeed}`);
         },500);
+        */
     }
     
     init(){
@@ -97,6 +99,7 @@ export class PictureRotate{
     }
 
     wheelSpeedControl(){
+        console.log(`wheelEventEnd : ${this.wheelEventEnd}`);
         const speedControlInterval = setInterval(()=> {
             if(this.wheelEventEnd){
                 if(this.wheelSpeed > 0){
@@ -108,9 +111,11 @@ export class PictureRotate{
                 }
             }
             else{
-                this.wheelSpeed +=30;
+                console.log('스피드 올려봐');
+                this.wheelSpeed +=90;
             }
-        },200)
+            console.log(`wheelSpeed : ${this.wheelSpeed}`);
+        },50)
         
     }
 }
