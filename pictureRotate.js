@@ -13,14 +13,17 @@ export class PictureRotate{
         this.preImageNum = 0;
         this.wheelValue = 0;
 
+        this.wheelEventEnd = true;
         this.isChecking = false;
         this.wheelSpeed = 0;
-        this.transitionSpeed = 1 ;
-
-        this.wheelEventEnd = true;
+        this.isSpeedControl = false;
         
         this.init();
         window.addEventListener('wheel',this.wheelEvent.bind(this));
+
+        setInterval(()=> {
+            console.log(`wheelSpeed : ${this.wheelSpeed}`);
+        },500);
     }
     
     init(){
@@ -35,15 +38,19 @@ export class PictureRotate{
 
     wheelEvent(data){
 
+        /* 0.2초마다 wheelEventEnd를 true로 만듬 */
+        /* 이때 wheelEvent가 실행 중이라면 다시 바로 false로 만들것이다. */
+        this.wheelEventEnd = false;
+        this.checkIsWheelEvent();
+
+        if(!this.isSpeedControl){
+            this.isSpeedControl = true;
+            this.wheelSpeedControl();
+        }
+
         this.wheelValue  -= data.wheelDelta;
         if(this.wheelValue < 0){
             this.wheelValue = 0;
-        }
-
-        this.wheelSpeed -= data.wheelDelta;
-        
-        if(!this.isChecking){
-            this.initWheelSpeed();
         }
         
 
@@ -79,22 +86,31 @@ export class PictureRotate{
         this.preImageNum = this.imageNum;
     }
 
-    /*휠 속도가 빠르면 transition스피드도 빨라지게하는 메소드*/
-    initWheelSpeed(){
-        this.isChecking = ture;
-        setTimeout( () => {
-           if(this.wheelSpeed != 0){
-               const decentWheelSpeed = setInterval(()=>{
-                   if(this.wheelSpeed > 0){
-                        this.wheelSpeed -= 120;
-                   }
-                   else{
-                       clearInterval(decentWheelSpeed);
-                   }
-               },300);
-           }
-            this.isChecking = false;
-        },1000);
+    checkIsWheelEvent(){ 
+        if(!this.isChecking){
+            this.isChecking = true;    
+            setTimeout(() => {
+                this.wheelEventEnd = true;
+                this.isChecking = false;
+            },200);
+        }
+    }
+
+    wheelSpeedControl(){
+        const speedControlInterval = setInterval(()=> {
+            if(this.wheelEventEnd){
+                if(this.wheelSpeed > 0){
+                    this.wheelSpeed -= 30;
+                }
+                else{
+                    this.isSpeedControl = false;
+                    clearInterval(speedControlInterval);
+                }
+            }
+            else{
+                this.wheelSpeed +=30;
+            }
+        },200)
         
     }
 }
