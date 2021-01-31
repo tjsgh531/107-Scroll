@@ -15,17 +15,15 @@ export class PictureRotate{
 
         this.wheelEventEnd = true;
         this.isChecking = false;
-        this.wheelSpeed = 0;
-        this.maxWheelSpeed = 1800;
+ 
         this.isSpeedControl = false;
+        this.wheelSpeed = 0;
+        this.maxWheelSpeed = 1000;
+        this.wheelDirection;
+        this.wheelReverseDir = false;
         
         this.init();
         window.addEventListener('wheel',this.wheelEvent.bind(this));
-
-        /*setInterval(()=> {
-            console.log(`wheelSpeed : ${this.wheelSpeed}`);
-        },500);
-        */
     }
     
     init(){
@@ -43,29 +41,30 @@ export class PictureRotate{
         /* 0.2초마다 wheelEventEnd를 true로 만듬 */
         /* 이때 wheelEvent가 실행 중이라면 다시 바로 false로 만들것이다. */
         this.wheelEventEnd = false;
-        this.checkIsWheelEvent();
+        this.checkIsWheelEvent(data.wheelDelta);
 
         if(!this.isSpeedControl){
             this.isSpeedControl = true;
             this.wheelSpeedControl();
         }
 
-        this.wheelValue  -= data.wheelDelta;
-        if(this.wheelValue < 0){
-            this.wheelValue = 0;
-        }
-        
+        if(!this.wheelEventEnd){
+            this.wheelValue  -= data.wheelDelta;
+            if(this.wheelValue < 0){
+                this.wheelValue = 0;
+            }
+            
 
-        this.imageNum = Math.floor(this.wheelValue / 840);
+            this.imageNum = Math.floor(this.wheelValue / 840);
 
-        if(this.preImageNum < this.imageNum){
-            this.switchRegular();
+            if(this.preImageNum < this.imageNum){
+                this.switchRegular();
+            }
+            
+            else if(this.preImageNum > this.imageNum){
+                this.switchReverse();
+            }
         }
-        
-        else if(this.preImageNum > this.imageNum){
-            this.switchReverse();
-        }
-
     }
 
     switchRegular(){
@@ -88,9 +87,19 @@ export class PictureRotate{
         this.preImageNum = this.imageNum;
     }
 
-    checkIsWheelEvent(){ 
+    checkIsWheelEvent(wheelDir){ 
         if(!this.isChecking){
-            this.isChecking = true;    
+            this.isChecking = true;
+           /* 휠 방향이 변했는지 체크하는 부분 */
+            if(this.wheelDirection !== null && this.wheelDirection !== wheelDir){
+                this.wheelReverseDir = true;
+            }
+            else{
+                this.wheelReverseDir = false;
+            }
+            this.wheelDirection = wheelDir;
+            
+            /* 0.2초 뒤 체킹을 false로 바꿈 만약 wheel중이라면 바로 true로 다시 바뀜 */
             setTimeout(() => {
                 this.wheelEventEnd = true;
                 this.isChecking = false;
@@ -101,21 +110,50 @@ export class PictureRotate{
     wheelSpeedControl(){
         console.log(`wheelEventEnd : ${this.wheelEventEnd}`);
         const speedControlInterval = setInterval(()=> {
+            if(this.wheelReverseDir){
+                this.wheelSpeed = 0;
+            }
+
             if(this.wheelEventEnd){
                 if(this.wheelSpeed > 0){
                     this.wheelSpeed -= 30;
+                    this.UpdateTransitionSpeed();
                 }
                 else{
                     this.isSpeedControl = false;
                     clearInterval(speedControlInterval);
                 }
             }
+
             else{
-                console.log('스피드 올려봐');
-                this.wheelSpeed +=90;
+                if(this.maxWheelSpeed > this.wheelSpeed){
+                    if(this.wheelSpeed < 600){
+                        this.wheelSpeed +=800;
+                    }
+                    else{
+                        this.wheelSpeed +=100;
+                    }
+                }
+                this.UpdateTransitionSpeed();
+
             }
+
             console.log(`wheelSpeed : ${this.wheelSpeed}`);
-        },50)
-        
+        },30)
+    }
+
+    UpdateTransitionSpeed(){
+        let transitionSpeed;
+
+        if(this.wheelSpeed < 250){
+            transitionSpeed = 0.8;
+        }
+        else{
+            transitionSpeed =  200/ this.wheelSpeed;
+        }
+
+        for(let i = 0 ; i < this.imageSection.length; i++){ 
+            this.imageSection[i].style.transition = `all ${transitionSpeed}s linear 0s`;
+        }
     }
 }
