@@ -60,7 +60,7 @@ export class PictureRotate{
             }
             
 
-            this.imageNum = Math.floor(this.wheelValue / 840);
+            this.imageNum = Math.floor(this.wheelValue / 600);
 
             if(this.preImageNum !== this.imageNum){
                 this.pictureChange.getImageNum(this.imageNum);
@@ -154,7 +154,7 @@ export class PictureRotate{
             this.transitionSpeed = 0.8;
         }
         else{
-            this.transitionSpeed =  200/ this.wheelSpeed;
+            this.transitionSpeed =  400/ this.wheelSpeed;
         }
 
         for(let i = 0 ; i < this.imageSection.length; i++){ 
