@@ -60,8 +60,8 @@ export class PictureChange{
         for(let i = 0 ; i< this.imageSection.length; i++){
             if(i == centerChildNum){
                 this.images[i].style.opacity = '1';
-                this.images[i].style.width = '800px';
-                this.images[i].style.height = '600px';
+               // this.images[i].style.width = '800px';
+                //this.images[i].style.height = '600px';
                 this.imageSection[i].style.justifyContent = 'center';
             }
             else{

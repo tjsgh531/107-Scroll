@@ -5,11 +5,6 @@ import{
 export class PictureRotate{
     constructor(){       
         this.imageSection = document.querySelectorAll('.imageSection');
-        this.centerPos = {
-            centerX : -300,
-            centerY : document.body.clientHeight/2 - 300,
-        }
-        this.radius = document.body.clientWidth /2;
 
         this.imageNum = 0;
         this.preImageNum = 0;
@@ -25,10 +20,35 @@ export class PictureRotate{
         this.wheelReverseDir = false;
         this.transitionSpeed = 0.8;
 
-        this.init();
+       
         window.addEventListener('wheel',this.wheelEvent.bind(this));
 
         this.pictureChange = new PictureChange(this.imageNum,this.transitionSpeed);  
+
+    
+        this.resize(document.body.clientWidth,document.body.clientHeight);
+        this.init();
+
+    }
+
+    resize(width,height){
+        const stageWidth = width;
+        const stageHeight = height;
+        
+        const pictureWidth = stageWidth * 9 /10;
+        const pictureHeight = pictureWidth * 3 / 4;
+
+        console.log(`pictureWidth : ${pictureWidth} / pictureHeight : ${pictureHeight}`);
+        document.documentElement.style.setProperty('--width',`${pictureWidth}px`);
+        document.documentElement.style.setProperty('--height',`${pictureHeight}px`);
+        console.log(`pictureRealW : ${document.documentElement.style.getPropertyValue('--width')}`);
+
+        this.centerPos = {
+            centerX : 0,
+            centerY : (stageHeight/2) -300,
+        }
+
+        this.radius = document.body.clientWidth /2;
     }
     
     init(){
