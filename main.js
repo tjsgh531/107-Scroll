@@ -6,7 +6,7 @@ class Main{
     constructor(){
         window.addEventListener('resize',this.resize.bind(this));
 
-        this.initSet = new InitSet(document.body.clientWidth,document.body.clientHeight);
+        this.initSet = new InitSet();
         
         this.resize();
     }

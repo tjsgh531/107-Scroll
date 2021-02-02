@@ -1,11 +1,14 @@
 export class InitSet{
-    constructor(stageWidth, stageHeight){
+    constructor(){
 
         this.imageSection = document.querySelectorAll('.imageSection');
+        this.PicprofileObj ={
+            degArr : [0,45,75,-75,-45],
+            sizeArr : [1, 0.5, 0.3, 0.3, 0.5],
+            zIndex : [10,5,1,1,5],
+        }
 
-        this.resize(stageWidth,stageHeight);
-
-        this.init();
+            
     }
 
     resize(stageWidth, stageHeight){
@@ -15,13 +18,15 @@ export class InitSet{
 
         this.picWidth = this.mainWidth * 3/5;
         this.picHeight = this.picWidth * 3/4;
-
+        
         this.centerPos = {
             posX : 0,
             posY : this.stageHeight / 2,
         }
 
         this.radius = this.mainWidth * 3/10;
+
+        this.init();
     }
    
     init(){
@@ -30,15 +35,24 @@ export class InitSet{
         let y;
 
         for(let i = 0 ; i < this.imageSection.length; i++){
-            this.imageSection[i].style.width = `${this.picWidth}px`;
-            this.imageSection[i].style.height = `${this.picHeight}px`;
-            deg = i;
-            if(i > 0){
-                deg = i * (30 * 1/i) / 180 * Math.PI;
-            }
+            const image = new Image();
+            image.src =`./image/${i}.jpg`;
+            this.imageSection[i].appendChild(image);
+            
+            this.imageSection[i].style.width = `${this.picWidth * this.PicprofileObj.sizeArr[i]}px`;
+            this.imageSection[i].style.height = `${this.picHeight * this.PicprofileObj.sizeArr[i]}px`;
+            this.imageSection[i].style.zIndex = `${this.PicprofileObj.zIndex[i]}`;
 
-            x = this.centerPos.posX + Math.cos(deg) * this.radius;
-            y = this.centerPos.posY + Math.sin(deg) * this.radius - this.picHeight/2;
+/* test부분 지워야 할것 */
+            let testNum = Math.floor(Math.random() * 100000000);
+            this.imageSection[i].style.backgroundColor = `#${testNum.toString(16).padStart(8,0)}`;
+/* test부분 지워야 할것 */
+
+            deg = this.PicprofileObj.degArr[i] * Math.PI / 180;
+          
+
+            x = this.centerPos.posX + Math.cos(deg) * this.radius ;
+            y = this.centerPos.posY + Math.sin(deg) * this.radius - this.picHeight * this.PicprofileObj.sizeArr[i] /2 ;
 
             this.imageSection[i].style.top = `${y}px`;
             this.imageSection[i].style.left = `${x}px`;
