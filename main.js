@@ -2,12 +2,12 @@ import{
     SectionPosition
 }from './sectionPosition.js';
 
-export let imageNum = 0;
+export let imageNum =0;
 export const PictureProfile = {
-    degArr : [0,45,75,100,-75,-45,-100], /* top,left속성 */
-    sizeArr : [1, 0.5, 0.3, 0.1, 0.3, 0.5, 0.1],
-    zIndex : [10, 5, 1, 0, 1, 5, 0],
-    opacity : [1, 0.5, 0.3, 0.0, 0.3, 0.5, 0.0],
+    degArr : [0,45,75,100,-100,-75,-45], /* top,left속성 */
+    sizeArr : [1, 0.5, 0.3, 0.1, 0.1, 0.3, 0.5],
+    zIndex : [10, 5, 1, 0, 0, 1, 5],
+    opacity : [1, 0.5, 0.3, 0.0, 0.0, 0.3, 0.5],
 }
 export let imageSection = document.querySelectorAll('.imageSection');
 
