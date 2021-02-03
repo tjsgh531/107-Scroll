@@ -14,7 +14,7 @@ export class InitSet{
             opacity : [1,0.5,0.3,0.3,0.5],
         }
 
-            
+        this.init();
     }
 
     resize(stageWidth, stageHeight){
@@ -36,19 +36,22 @@ export class InitSet{
             this.imageSection[i].style.transition = 'all 0s linear 0s';
         }
 
-        this.init();
+        this.resizeSection();
     }
    
     init(){
+        for(let i = 0 ; i < this.imageSection.length; i++){
+            const image = new Image();
+            image.src =`./image/${i}.jpg`;
+            this.imageSection[i].appendChild(image);
+        }
+    }
+    resizeSection(){
         let deg;
         let x;
         let y;
 
         for(let i = 0 ; i < this.imageSection.length; i++){
-            const image = new Image();
-            image.src =`./image/${i}.jpg`;
-            this.imageSection[i].appendChild(image);
-
             this.imageSection[i].style.width = `${this.picWidth * this.PicprofileObj.sizeArr[i]}px`;
             this.imageSection[i].style.height = `${this.picHeight * this.PicprofileObj.sizeArr[i]}px`;
             this.imageSection[i].style.zIndex = `${this.PicprofileObj.zIndex[i]}`;
