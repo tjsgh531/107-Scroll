@@ -7,8 +7,16 @@ export class ChangeImage{
         
         this.imgNum = imageNum;
         this.maxImageNum = 100;
+        this.transitionSpeed = 0;
     }
+
     Change(wheelSpeed,wheelDir){
+        this.changeCenterImageNum(wheelSpeed,wheelDir);
+        this.changeCenterSectionNum();
+
+    }
+
+    changeCenterImageNum(){
         const changeVal = Math.floor(wheelSpeed /2);
         if(wheelDir){
             if(this.imgNum < this.maxImageNum){
@@ -26,7 +34,9 @@ export class ChangeImage{
                 }
             }
         }
+    }
 
-        
+    changeCenterSectionNum(){
+        for()
     }
 }
