@@ -8,10 +8,10 @@ export class InitSet{
         this.imageSection = document.querySelectorAll('.imageSection');
         this.scrollEvent = new ScrollEvent(this.imageSection);
         this.PicprofileObj ={
-            degArr : [0,45,75,-75,-45],
-            sizeArr : [1, 0.5, 0.3, 0.3, 0.5],
-            zIndex : [10,5,1,1,5],
-            opacity : [1,0.5,0.3,0.3,0.5],
+            degArr : [0,45,75,100,-75,-45,-100],
+            sizeArr : [1, 0.5, 0.3, 0.1, 0.3, 0.5, 0.1],
+            zIndex : [10, 5, 1, 0, 1, 5, 0],
+            opacity : [1, 0.5, 0.3, 0.0, 0.3, 0.5, 0.0],
         }
 
         this.init();
@@ -30,7 +30,9 @@ export class InitSet{
             posY : this.stageHeight / 2,
         }
 
+        
         this.radius = this.mainWidth * 3/10;
+   
 
         for(let i = 0 ; i< this.imageSection.length; i++){
             this.imageSection[i].style.transition = 'all 0s linear 0s';
@@ -42,7 +44,9 @@ export class InitSet{
     init(){
         for(let i = 0 ; i < this.imageSection.length; i++){
             const image = new Image();
-            image.src =`./image/${i}.jpg`;
+            if(i<4){
+                image.src =`./image/${i}.jpg`;
+            }
             this.imageSection[i].appendChild(image);
         }
     }
