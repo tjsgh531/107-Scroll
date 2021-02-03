@@ -9,27 +9,29 @@ export class ScrollEvent{
         this.wheelDir = true;
         this.isWheel = false;
 
-        this.curWheelDir = 0;
+        this.curWheelDir;
+        this.curWheelVal = 0;
 
+
+     
         setInterval(() => {
-            
+          
             if(this.isWheel){
-                this.isWheel = false;
+         
+                    clearTimeout(this.checking);
+                    this.checking = setTimeout(() => {
+                        this.isWheel =false;
+                        console.log('2');
+                    },1000);
+                
             }
-            else{
-                setTimeout(() => {
-                    /* pause */
-                },300);
-            }
-            
-        },300);
+        },200);
       }
 
     wheelEvent(data){
         const wheelVal = data.wheelDelta;
         this.isWheel = true;
        
-        
         if(wheelVal < 0){
             this.wheelDir = true;
         }
@@ -37,6 +39,6 @@ export class ScrollEvent{
             this.wheelDir = false;
         }
 
-
+        this.curWheelVal -= wheelVal;
     }
 }
