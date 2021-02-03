@@ -2,19 +2,29 @@ import{
     ScrollEvent
 }from './scrollEvent.js';
 
-export class InitSet{
+import{
+    PictureProfile,
+    imageSection
+}from './main.js';
+
+export class SectionPosition{
     constructor(){
 
-        this.imageSection = document.querySelectorAll('.imageSection');
+        this.imageSection = imageSection;
         this.scrollEvent = new ScrollEvent(this.imageSection);
-        this.PicprofileObj ={
-            degArr : [0,45,75,100,-75,-45,-100],
-            sizeArr : [1, 0.5, 0.3, 0.1, 0.3, 0.5, 0.1],
-            zIndex : [10, 5, 1, 0, 1, 5, 0],
-            opacity : [1, 0.5, 0.3, 0.0, 0.3, 0.5, 0.0],
-        }
+        this.PicprofileObj = PictureProfile;
 
         this.init();
+    }
+    
+    init(){
+        for(let i = 0 ; i < this.imageSection.length; i++){
+            const image = new Image();
+            if(i<4){
+                image.src =`./image/${i}.jpg`;
+            }
+            this.imageSection[i].appendChild(image);
+        }
     }
 
     resize(stageWidth, stageHeight){
@@ -41,15 +51,6 @@ export class InitSet{
         this.resizeSection();
     }
    
-    init(){
-        for(let i = 0 ; i < this.imageSection.length; i++){
-            const image = new Image();
-            if(i<4){
-                image.src =`./image/${i}.jpg`;
-            }
-            this.imageSection[i].appendChild(image);
-        }
-    }
     resizeSection(){
         let deg;
         let x;
@@ -73,4 +74,5 @@ export class InitSet{
         }
     }
 
+    
 }

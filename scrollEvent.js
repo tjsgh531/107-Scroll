@@ -1,5 +1,7 @@
+import{
+    ChangeImage
+}from './changeImage.js';
 
-export let imageNum = 0;
 
 export class ScrollEvent{
     constructor(sectionArr){
@@ -14,21 +16,7 @@ export class ScrollEvent{
 
         this.maxImageNum = 100;
 
-     
-        const update = setInterval(() => {
-            
-            if(this.wheelDir){
-                if(imageNum < this.maxImageNum){
-                    imageNum += Math.floor(this.wheelSpeed / 2);
-                }
-            }
-            else{
-                if(imageNum > 0){
-                    imageNum -= Math.floor(this.wheelSpeed / 2);
-                }
-            }
-            console.log(`wheelSpeed : ${this.wheelSpeed} / imageNum : ${imageNum}`);
-        },200);
+        this.changeImage = new ChangeImage(); 
       }
 
     wheelEvent(data){
@@ -47,11 +35,16 @@ export class ScrollEvent{
 
             setTimeout(()=> {
                 resolve();
-            },100);
+            },200);
             
         });
         wheelItem.then(()=>{
-                this.wheelSpeed--;
+            /* 이부분에 휠값에따라 ()변하게하는 메소드 넣기 */
+            console.log(this.wheelSpeed);
+            this.changeImage.Change(this.wheelSpeed, this.wheelDir);
+            /* 이부분에 */
+
+            this.wheelSpeed--;
         })
 
     }
