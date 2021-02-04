@@ -7,7 +7,7 @@ import{
 
 export class ChangeImage{
     constructor(){
-        
+        this.imageNum = imageNum;
         this.maxImageNum = 100;
         this.transitionSpeed = 0;
     }
