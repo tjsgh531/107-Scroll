@@ -1,13 +1,10 @@
+
 import{
-    imageNum
-}from './main.js';
-import{
-    imageSection
+    dataBase
 }from './main.js';
 
 export class ChangeImage{
     constructor(){
-        this.imageNum = imageNum;
         this.maxImageNum = 100;
         this.transitionSpeed = 0;
     }
@@ -33,18 +30,18 @@ export class ChangeImage{
     }
 
     changeCenterImageNum(){
-        console.log(`imageNum : ${imageNum}`);
-        imageNum +=this.changeVal;
-        if(imageNum < 0){
-            imageNume = 0;
+        console.log(`imageNum : ${dataBase.imageNum}`);
+        dataBase.imageNum+=this.changeVal;
+        if(dataBase.imageNum < 0){
+            dataBase.imageNum = 0;
         }
-        else if(imageNum > this.maxImageNum){
-            imageNum = this.maxImageNum;
+        else if(dataBase.imageNum > this.maxImageNum){
+            dataBase.imageNum = this.maxImageNum;
         }
     }
 
     changeCenterSectionNum(wheelDir){
-        const centerSectionNum = imageNum % 7;
+        const centerSectionNum = dataBase.imageNum % 7;
         const curCenterSectionNum = imageSection[0].dataset.SectionNum;
         if(centerSectionNum !== curCenterSectionNum){
           if(wheelDir){

@@ -1,25 +1,23 @@
 import{
+    DataBase
+}from './DB.js';
+
+import{
     SectionPosition
 }from './sectionPosition.js';
 
-export let imageNum =0;
-export const PictureProfile = {
-    degArr : [0,45,75,100,-100,-75,-45], /* top,left속성 */
-    sizeArr : [1, 0.5, 0.3, 0.1, 0.1, 0.3, 0.5],
-    zIndex : [10, 5, 1, 0, 0, 1, 5],
-    opacity : [1, 0.5, 0.3, 0.0, 0.0, 0.3, 0.5],
-}
-export let imageSection = document.querySelectorAll('.imageSection');
+export const dataBase = new DataBase(); 
 
 class Main{
     constructor(){
+        this.dataBase = new DataBase();
         window.addEventListener('click', () => {
             alert('잠시대기');
         })
         window.addEventListener('resize',this.resize.bind(this));
 
         this.sectionPosition = new SectionPosition();
-        
+       
         this.resize();
     }
 
