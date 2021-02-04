@@ -1,6 +1,7 @@
 export class DataBase{
     constructor(){
         this.imageNum = 0;
+        
         this.imageSection = document.querySelectorAll('.imageSection');
 
         this.PictureProfile = {

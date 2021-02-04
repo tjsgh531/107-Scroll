@@ -77,6 +77,11 @@ export class ChangeImage{
                 dataBase.imageSection = [...imageSectiontemp];
             }  
 
+            /*!!!! 여기서 imageCenterNum을 측정 후 이미지 변화를 줘야함 !!!*/
+            const curCenterImageNum = dataBase.imageSection[0].firstChild.src;
+            console.log(curCenterImageNum);
+
+            
             dataBase.changeSection();
 
             setTimeout(()=>{
