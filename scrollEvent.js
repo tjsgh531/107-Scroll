@@ -34,17 +34,18 @@ export class ScrollEvent{
             this.curWheelVal -= wheelVal;
 
             setTimeout(()=> {
+                
                 resolve();
-            },200);
+            },500);
             
         });
         wheelItem.then(()=>{
             /* 이부분에 휠값에따라 ()변하게하는 메소드 넣기 */
-            console.log(this.wheelSpeed);
+
             this.changeImage.Change(this.wheelSpeed, this.wheelDir, this.SectionArr);
             /* 이부분에 */
 
-            this.wheelSpeed--;
+            this.wheelSpeed = 0;
         })
 
     }
