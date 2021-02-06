@@ -6,6 +6,10 @@ import{
     SectionPosition
 }from './sectionPosition.js';
 
+import{
+    ScrollEvent
+}from './scrollEvent.js';
+
 export const dataBase = new DataBase(); 
 
 class Main{
@@ -17,7 +21,7 @@ class Main{
         window.addEventListener('resize',this.resize.bind(this));
 
         this.sectionPosition = new SectionPosition();
-       
+        this.scrollEvent = new ScrollEvent();
         this.resize();
     }
 

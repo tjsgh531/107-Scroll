@@ -1,8 +1,4 @@
 import{
-    ScrollEvent
-}from './scrollEvent.js';
-
-import{
     dataBase
 }from './main.js';
 
@@ -10,7 +6,6 @@ export class SectionPosition{
     constructor(){
 
         this.imageSection = dataBase.imageSection;
-        this.scrollEvent = new ScrollEvent();
         this.PicprofileObj = dataBase.PictureProfile;
         this.initPlay = false;
 

@@ -25,13 +25,13 @@ export class ScrollEvent{
                 dataBase.imageNum++;
                 if(dataBase.imageNum > dataBase.maxImageNum){
                     dataBase.imageNum--;
-                    return;
                 }
-                
-                temp = imageSectiontemp[0];
-                imageSectiontemp.shift();
-                imageSectiontemp.push(temp);
-                dataBase.imageSection = [...imageSectiontemp];
+                else{
+                    temp = imageSectiontemp[0];
+                    imageSectiontemp.shift();
+                    imageSectiontemp.push(temp);
+                    dataBase.imageSection = [...imageSectiontemp];
+                }
             }
 
             else if(wheelValue > 0){
@@ -39,13 +39,14 @@ export class ScrollEvent{
                 dataBase.imageNum--;
                 if(dataBase.imageNum < 0){
                     dataBase.imageNum++;
-                    return;
+                    console.log(dataBase.imageNum);
                 }
-
-                temp = imageSectiontemp[dataBase.imageSection.length-1];
-                imageSectiontemp.pop();
-                imageSectiontemp.unshift(temp);
-                dataBase.imageSection = [...imageSectiontemp];
+                else{
+                    temp = imageSectiontemp[dataBase.imageSection.length-1];
+                    imageSectiontemp.pop();
+                    imageSectiontemp.unshift(temp);
+                    dataBase.imageSection = [...imageSectiontemp];
+                }
             }  
 
             dataBase.changeSection();
