@@ -18,6 +18,10 @@ import{
     AutoScroll
 }from './autoScroll.js';
 
+import{
+    AudioManager
+}from './audioManager.js';
+
 export const dataBase = new DataBase(); 
 
 class Main{
@@ -29,6 +33,7 @@ class Main{
         this.background = new Background();
         this.scrollEvent = new ScrollEvent();
         this.autoScroll = new AutoScroll();
+        this.AudioManager = new AudioManager();
         this.resize();
     }
 

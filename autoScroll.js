@@ -7,7 +7,7 @@ export class AutoScroll{
         this.checkBox = document.getElementById('checkBox');
         this.sentence = document.querySelector('#autoScrollSwitch p');
         this.canAutoScroll = false;
-        this.autoScrollTime = 4000;
+        this.autoScrollTime = 3000;
 
         this.checkBox.addEventListener('click',this.onClick.bind(this));
     }
