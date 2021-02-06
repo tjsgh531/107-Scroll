@@ -1,14 +1,14 @@
 export class DataBase{
     constructor(){
         this.imageNum = 0;
-        
+        this.maxImageNum = 100;
         this.imageSection = document.querySelectorAll('.imageSection');
 
         this.PictureProfile = {
-            degArr : [0,45,75,100,-100,-75,-45], /* top,left속성 */
-            sizeArr : [1, 0.5, 0.3, 0.1, 0.1, 0.3, 0.5],
-            zIndex : [10, 5, 1, 0, 0, 1, 5],
-            opacity : [1, 0.5, 0.3, 0.0, 0.0, 0.3, 0.5],
+            degArr : [0, 45, 75, 90, 105, 135, -180, -135, -105, -90, -75, -45], /* top,left속성 */
+            sizeArr : [1, 0.5, 0.3, 0.1, 0, 0, 0, 0, 0, 0.1, 0.3, 0.5],
+            zIndex : [10, 5, 2, 1, 0, 0, 0, 0, 0, 1, 2, 5],
+            opacity : [1, 0.5, 0.3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.5],
         }
         this.transitionSpeed = [300, 150, 100];
     }
@@ -50,6 +50,26 @@ export class DataBase{
 
             this.imageSection[i].style.top = `${y}px`;
             this.imageSection[i].style.left = `${x}px`;
+        }
+
+        /*이미지 넣어주는 코드 */
+        for(let i = 0 ; i < this.imageSection.length; i++){
+            if(i < 7){
+                if(this.imageNum + i > this.maxImageNum){
+                    this.imageSection[i].firstElementChild.src = '';
+                }
+                else{
+                    this.imageSection[i].firstElementChild.src =`./image/${this.imageNum + i}.jpg`;
+                }
+            }
+            else{
+                if(this.imageNum + i -12 < 0){
+                    this.imageSection[i].firstElementChild.src = '';
+                }
+                else{
+                    this.imageSection[i].firstElementChild.src =`./image/${this.imageNum + i -12}.jpg`;
+                }
+            }
         }
     }
     

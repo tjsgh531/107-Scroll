@@ -1,52 +1,60 @@
 import{
-    ChangeImage
-}from './changeImage.js';
-
+    dataBase
+}from './main.js';
 
 export class ScrollEvent{
     constructor(sectionArr){
         this.SectionArr = sectionArr; 
         window.addEventListener('wheel', this.wheelEvent.bind(this));
 
-        this.wheelDir = true;
-        this.wheelSpeed = 0;
+        this.canWheel = true;
 
-        this.curWheelDir;
-        this.curWheelVal = 0;
-
-        this.maxImageNum = 100;
-
-        this.changeImage = new ChangeImage(); 
+        //this.changeImage = new ChangeImage(); 
       }
 
     wheelEvent(data){
-        const wheelItem = new Promise((resolve) => {
-            const wheelVal = data.wheelDelta;
-            this.wheelSpeed ++;
-            
-            if(wheelVal < 0){
-                this.wheelDir = true;
-            }
-            else{
-                this.wheelDir = false;
-            }
-    
-            this.curWheelVal -= wheelVal;
+        if(this.canWheel){
+            this.canWheel = false;
+            const wheelValue = data.wheelDelta;
+        
+            let imageSectiontemp = [...dataBase.imageSection];
+            let temp;
 
-            setTimeout(()=> {
+            if(wheelValue < 0){
                 
-                resolve();
-            },500);
-            
-        });
-        wheelItem.then(()=>{
-            /* 이부분에 휠값에따라 ()변하게하는 메소드 넣기 */
+                dataBase.imageNum++;
+                if(dataBase.imageNum > dataBase.maxImageNum){
+                    dataBase.imageNum--;
+                    return;
+                }
+                
+                temp = imageSectiontemp[0];
+                imageSectiontemp.shift();
+                imageSectiontemp.push(temp);
+                dataBase.imageSection = [...imageSectiontemp];
+            }
 
-            this.changeImage.Change(this.wheelSpeed, this.wheelDir, this.SectionArr);
-            /* 이부분에 */
+            else if(wheelValue > 0){
+                
+                dataBase.imageNum--;
+                if(dataBase.imageNum < 0){
+                    dataBase.imageNum++;
+                    return;
+                }
 
-            this.wheelSpeed = 0;
-        })
+                temp = imageSectiontemp[dataBase.imageSection.length-1];
+                imageSectiontemp.pop();
+                imageSectiontemp.unshift(temp);
+                dataBase.imageSection = [...imageSectiontemp];
+            }  
 
+            dataBase.changeSection();
+
+            setTimeout(() => {
+                this.canWheel = true;
+            },200);
+
+            console.log(`ImageNum : ${dataBase.imageNum}`)
+        }
     }
 }

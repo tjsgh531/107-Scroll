@@ -20,7 +20,7 @@ export class SectionPosition{
         for(let i = 0 ; i < this.imageSection.length; i++){
             const image = new Image();
            
-            if(i<4){
+            if(i<7){
                 image.src =`./image/${i}.jpg`;
             }
             this.imageSection[i].appendChild(image);
