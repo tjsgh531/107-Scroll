@@ -14,19 +14,21 @@ import{
     Background
 }from './Backgorund.js';
 
+import{
+    AutoScroll
+}from './autoScroll.js';
+
 export const dataBase = new DataBase(); 
 
 class Main{
     constructor(){
-        this.dataBase = new DataBase();
-        window.addEventListener('click', () => {
-            alert('잠시대기');
-        })
+
         window.addEventListener('resize',this.resize.bind(this));
 
         this.sectionPosition = new SectionPosition();
         this.background = new Background();
         this.scrollEvent = new ScrollEvent();
+        this.autoScroll = new AutoScroll();
         this.resize();
     }
 
