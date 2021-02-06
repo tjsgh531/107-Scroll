@@ -6,9 +6,9 @@ export class DataBase{
 
         this.PictureProfile = {
             degArr : [0, 45, 75, 90, 105, 135, -180, -135, -105, -90, -75, -45], /* top,left속성 */
-            sizeArr : [1, 0.5, 0.3, 0.1, 0, 0, 0, 0, 0, 0.1, 0.3, 0.5],
+            sizeArr : [1.1, 0.4, 0.3, 0.1, 0, 0, 0, 0, 0, 0.1, 0.3, 0.4],
             zIndex : [10, 5, 2, 1, 0, 0, 0, 0, 0, 1, 2, 5],
-            opacity : [1, 0.5, 0.3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.5],
+            opacity : [1, 0.5, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.5],
         }
         this.transitionSpeed = [300, 150, 100];
     }
@@ -23,7 +23,7 @@ export class DataBase{
         this.picHeight = this.picWidth * 3/4;
         
         this.centerPos = {
-            posX : 0,
+            posX : -this.stageWidth/10,
             posY : this.stageHeight / 2,
         }
     
