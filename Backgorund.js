@@ -20,8 +20,6 @@ export class Background{
         requestAnimationFrame(this.moveBubble.bind(this));
     }
 
-
-
     moveBubble(t){
         let idx = Math.floor(t/this.createSpeed);
         if(t > this.createSpeed * (this.maxBubbleNum-1)){

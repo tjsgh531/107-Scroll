@@ -22,7 +22,6 @@ export class Bubble{
         if(this.yPos < -10){
             this.isAppear = false;
         }
-
         this.setPos();
     }
 
@@ -30,5 +29,6 @@ export class Bubble{
         this.xPos =Math.random() * document.body.clientWidth;
         this.yPos = document.body.clientHeight;
         this.speed =Math.random() + 0.5;
+        this.isAppear = true;
     }
 }
