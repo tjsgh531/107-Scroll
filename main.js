@@ -10,6 +10,10 @@ import{
     ScrollEvent
 }from './scrollEvent.js';
 
+import{
+    Background
+}from './Backgorund.js';
+
 export const dataBase = new DataBase(); 
 
 class Main{
@@ -21,6 +25,7 @@ class Main{
         window.addEventListener('resize',this.resize.bind(this));
 
         this.sectionPosition = new SectionPosition();
+        this.background = new Background();
         this.scrollEvent = new ScrollEvent();
         this.resize();
     }

@@ -10,6 +10,8 @@ html,body{
 }
 body{
     background: linear-gradient(#faeeb9,#b6f5e0);
+    position: relative;
+    overflow: hidden;
 }
 main{
     margin: 0 auto;
@@ -34,4 +36,16 @@ main{
 img{
     all :unset;
     height: 100%;
+}
+
+.bubble{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.8);
+
+    z-index: 900;
+    position: absolute;
 }
