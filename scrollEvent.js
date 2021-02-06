@@ -3,8 +3,8 @@ import{
 }from './main.js';
 
 export class ScrollEvent{
-    constructor(sectionArr){
-        this.SectionArr = sectionArr; 
+    constructor(){
+        this.SectionArr = dataBase.imageSection; 
         window.addEventListener('wheel', this.wheelEvent.bind(this));
 
         this.canWheel = true;

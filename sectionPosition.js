@@ -10,10 +10,12 @@ export class SectionPosition{
     constructor(){
 
         this.imageSection = dataBase.imageSection;
-        this.scrollEvent = new ScrollEvent(this.imageSection);
+        this.scrollEvent = new ScrollEvent();
         this.PicprofileObj = dataBase.PictureProfile;
+        this.initPlay = false;
 
         this.init();
+        
     }
     
     init(){
@@ -28,6 +30,7 @@ export class SectionPosition{
     }
 
     resize(stageWidth, stageHeight){
+        this.imageSection = dataBase.imageSection;
         this.stageWidth = stageWidth;
         this.stageHeight = stageHeight;
         this.mainWidth = this.stageWidth * 9/10 ;
@@ -36,7 +39,7 @@ export class SectionPosition{
         this.picHeight = this.picWidth * 3/4;
         
         this.centerPos = {
-            posX : -this.stageWidth/10,
+            posX : -this.stageWidth/11,
             posY : this.stageHeight / 2,
         }
 
@@ -71,8 +74,30 @@ export class SectionPosition{
 
             this.imageSection[i].style.top = `${y}px`;
             this.imageSection[i].style.left = `${x}px`;
-        }
-    }
 
+            if(this.initPlay){
+                console.log('여기가 실행 되??');
+                for(let i = 0 ; i < this.imageSection.length; i++){
+                    if(i < 7){
+                        if(this.imageNum + i > this.maxImageNum){
+                            this.imageSection[i].firstElementChild.src = '';
+                        }
+                        else{
+                            this.imageSection[i].firstElementChild.src =`./image/${this.imageNum + i}.jpg`;
+                        }
+                    }
+                    else{
+                        if(this.imageNum + i -12 < 0){
+                            this.imageSection[i].firstElementChild.src = '';
+                        }
+                        else{
+                            this.imageSection[i].firstElementChild.src =`./image/${this.imageNum + i -12}.jpg`;
+                        }
+                    }
+                }
+            }
+        }
+      
+    }
     
 }

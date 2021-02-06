@@ -23,7 +23,7 @@ export class DataBase{
         this.picHeight = this.picWidth * 3/4;
         
         this.centerPos = {
-            posX : -this.stageWidth/10,
+            posX : -this.stageWidth/11,
             posY : this.stageHeight / 2,
         }
     
