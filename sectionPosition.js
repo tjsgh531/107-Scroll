@@ -55,6 +55,12 @@ export class SectionPosition{
         let y;
 
         for(let i = 0 ; i < this.imageSection.length; i++){
+            if(i== 0){
+                this.imageSection[i].firstElementChild.style.border = '5px solid white';
+            }
+            else{
+                this.imageSection[i].firstElementChild.style.border = '';
+            }
             this.imageSection[i].style.width = `${this.picWidth * this.PicprofileObj.sizeArr[i]}px`;
             this.imageSection[i].style.height = `${this.picHeight * this.PicprofileObj.sizeArr[i]}px`;
             this.imageSection[i].style.zIndex = `${this.PicprofileObj.zIndex[i]}`;

@@ -38,6 +38,12 @@ export class DataBase{
         let y;
 
         for(let i = 0 ; i < this.imageSection.length; i++){
+            if(i== 0){
+                this.imageSection[i].firstElementChild.style.border = '5px solid white';
+            }
+            else{
+                this.imageSection[i].firstElementChild.style.border = '';
+            }
             this.imageSection[i].style.width = `${this.picWidth * this.PictureProfile.sizeArr[i]}px`;
             this.imageSection[i].style.height = `${this.picHeight * this.PictureProfile.sizeArr[i]}px`;
             this.imageSection[i].style.zIndex = `${this.PictureProfile.zIndex[i]}`;
