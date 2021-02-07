@@ -28,7 +28,7 @@ export class Bubble{
     reset(){
         this.xPos =Math.random() * document.body.clientWidth;
         this.yPos = -10;
-        this.speed =Math.random() + 0.5;
+        this.speed =Math.random() *1.2 + 1;
         this.isAppear = true;
     }
 }
