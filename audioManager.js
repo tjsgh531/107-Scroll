@@ -1,16 +1,15 @@
 export class AudioManager{
     constructor(){
         this.audioIcon = new Image();
-        this.audioIcon.src ='./image/pauseIcon.jpg';
+        this.audioIcon.src ='./image/playIcon.png';
+ 
         this.audioIcon.style.display = 'inline-block';
-       
 
         this.audio = document.createElement('audio');
-        this.audio.src = '';
+        this.audio.src = './BGM/BGM.mp3';
         this.audio.loop = true;
-        this.audio.play();
 
-        this.isPlaying = true;
+        this.isPlaying = false;
 
         document.getElementById('audioManager').appendChild(this.audio);
         document.getElementById('audioManager').appendChild(this.audioIcon);
@@ -20,12 +19,12 @@ export class AudioManager{
     OnClick(){
         this.isPlaying = !this.isPlaying; 
         if(this.isPlaying){
-            this.audioIcon.src ='./image/pauseIcon.jpg';
+            this.audioIcon.src ='./image/pauseIcon.png';
             this.audio.play();
 
         }
         else{
-            this.audioIcon.src ='./image/playIcon.jpg';
+            this.audioIcon.src ='./image/playIcon.png';
             this.audio.pause();
         }
     }
