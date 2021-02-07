@@ -59,13 +59,35 @@ export class DataBase{
         }
 
         /*이미지 넣어주는 코드 */
+        this.imageInput();
+    }
+
+    exitImageCheck(i){
+        try{
+            this.imageSection[i].firstElementChild.src =`./image/${this.imageNum + i}.jpg`;
+        }catch(error){
+            this.imageNum++;
+            this.exitImageCheck(i);
+        }
+    }
+
+    exitImageCheckReverse(i){
+        try{
+            this.imageSection[i].firstElementChild.src =`./image/${this.imageNum + i -12}.jpg`;
+        }catch(error){
+            this.imageNum--;
+            this.exitImageCheckReverse(i);
+        }
+    }
+
+    imageInput(){
         for(let i = 0 ; i < this.imageSection.length; i++){
             if(i < 7){
                 if(this.imageNum + i > this.maxImageNum){
                     this.imageSection[i].firstElementChild.src = '';
                 }
                 else{
-                    this.imageSection[i].firstElementChild.src =`./image/${this.imageNum + i}.jpg`;
+                    this.exitImageCheck(i);
                 }
             }
             else{
