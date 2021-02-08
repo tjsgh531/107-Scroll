@@ -1,7 +1,7 @@
 export class DataBase{
     constructor(){
         this.imageNum = 0;
-        this.maxImageNum = 376;
+        this.maxImageNum = 345;
         this.imageSection = document.querySelectorAll('.imageSection');
 
         this.PictureProfile = {
@@ -62,38 +62,27 @@ export class DataBase{
         this.imageInput();
     }
 
-    exitImageCheck(i){
-        try{
-            this.imageSection[i].firstElementChild.src =`./image/${this.imageNum + i}.jpg`;
-        }catch(error){
-            this.imageNum++;
-            this.exitImageCheck(i);
-        }
-    }
-
-    exitImageCheckReverse(i){
-        try{
-            this.imageSection[i].firstElementChild.src =`./image/${this.imageNum + i -12}.jpg`;
-        }catch(error){
-            this.imageNum--;
-            this.exitImageCheckReverse(i);
-        }
-    }
-
     imageInput(){
         for(let i = 0 ; i < this.imageSection.length; i++){
+            /* center의 이미지 다음것들 */
             if(i < 7){
+                /* 다음것이 maxImageNum을 넘을 경우 */
                 if(this.imageNum + i > this.maxImageNum){
                     this.imageSection[i].firstElementChild.src = '';
                 }
+                /* 정상적으로 다음 이미지를 가져와야 하는 경우 */
                 else{
-                    this.exitImageCheck(i);
+                
+                    this.imageSection[i].firstElementChild.src =`./image/${this.imageNum + i}.jpg`;
                 }
             }
+            /* center의 이미지 이전 것들 */
             else{
+                /* 이전 것이 0보다 작은 경우 */
                 if(this.imageNum + i -12 < 0){
                     this.imageSection[i].firstElementChild.src = '';
                 }
+                /* 정상적으로 이전 이미지를 가져와야 하는 경우 */
                 else{
                     this.imageSection[i].firstElementChild.src =`./image/${this.imageNum + i -12}.jpg`;
                 }
