@@ -1,7 +1,7 @@
 export class DataBase{
     constructor(){
         this.imageNum = 0;
-        this.maxImageNum = 345;
+        this.maxImageNum = 343;
         this.imageSection = document.querySelectorAll('.imageSection');
 
         this.PictureProfile = {
