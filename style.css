@@ -33,6 +33,77 @@ main{
     justify-content: center;
 
 }
+.Icon{
+  margin: 8.5px 2px;
+
+  width: 30px;
+  height: 30px;
+
+  font-size: 20px;
+  font-weight: 900;
+  font-family: sans-serif;
+  color: black;
+
+  box-sizing: border-box;
+  border: 2px solid black;
+  border-radius: 50%;
+
+  padding: 2px 5px;
+}
+
+#fullScreen{
+  position: absolute;
+  top : 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 18px;
+  font-weight: 600;
+  font-family: sans-serif;
+}
+
+.guide 
+	{
+	z-index:100;
+	position: relative;
+	height: auto;
+	padding: 10px 10px 10px 10px;
+	background: #FFFFFF;
+	border-radius: 5px;
+	border: #7F7F7F solid 2px;
+	position: absolute;
+	font-size: 16px;
+	text-align: left;
+	}
+	
+	.guide:after 
+	{
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-width: 0 16px 20px 17.5px;
+	border-color: #FFFFFF transparent;
+	display: block;
+	width: 0;
+	z-index: 1;
+	top: -18.5px; 
+	left: 49px; 
+	}
+	
+	.guide:before 
+	{
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-width: 0 16px 20px 17.5px;
+	border-color: #7F7F7F transparent;
+	display: block;
+	width: 0;
+	z-index: 0;
+	top: -20px;
+	left: 49px;
+  }
+  
 img{
     all :unset;
     height: 100%;

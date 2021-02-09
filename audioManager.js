@@ -1,7 +1,9 @@
 export class AudioManager{
     constructor(){
-        this.audioIcon = new Image();
-        this.audioIcon.src ='./image/playIcon.png';
+        this.audioIcon = document.createElement('div');
+        this.audioIcon.classList.add('Icon');
+        this.audioIcon.textContent = '▶';
+     
  
         this.audioIcon.style.display = 'inline-block';
 
@@ -17,14 +19,16 @@ export class AudioManager{
         this.audioIcon.addEventListener('click',this.OnClick.bind(this));
     }
     OnClick(){
+       
         this.isPlaying = !this.isPlaying; 
         if(this.isPlaying){
-            this.audioIcon.src ='./image/pauseIcon.png';
+
+            this.audioIcon.textContent = '||';    
             this.audio.play();
 
         }
         else{
-            this.audioIcon.src ='./image/playIcon.png';
+            this.audioIcon.textContent = '▶';   
             this.audio.pause();
         }
     }

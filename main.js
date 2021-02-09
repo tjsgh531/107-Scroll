@@ -26,8 +26,16 @@ export const dataBase = new DataBase();
 
 class Main{
     constructor(){
-
         window.addEventListener('resize',this.resize.bind(this));
+        window.addEventListener('keydown',(event) => {
+            if(event.keyCode === 122){
+                try{
+                    document.getElementById('fullScreen').remove();
+                }catch(error){
+                    return;
+                }       
+            }
+        });
 
         this.sectionPosition = new SectionPosition();
         this.background = new Background();
@@ -35,6 +43,7 @@ class Main{
         this.autoScroll = new AutoScroll();
         this.AudioManager = new AudioManager();
         this.resize();
+
     }
 
     resize(){
